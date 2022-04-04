@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class = "container">
+    <h1 class = "text-center">Doctors of {{Hospital.Hospital_Name}}</h1>
+    <hr/>
+    <div class="row">
+        {% for doctor in Doctors %}
+        <div class="col-md-4">
+            <div class="card" style="width: 20rem;">
+                {% if doctor.Profile_Picture %}
+                    <img src="{{doctor.Profile_Picture.url}}" class="card-img-top" alt="{% static 'default.png' %}">
+                {% else %}
+                    <img src="{% static 'default.png' %}" class="card-img-top" alt="{% static 'default.png' %}">
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="card-subtitle mb-2" style="font-size: 20px;">Name : Dr. {{doctor.Doctor_Name}}</h1>
+                    <h1 style="font-size: 18px;">Qualification : {{doctor.Qualification}}</h1>
+                    <h1 style="font-size: 18px;">Specialization: {% if doctor.Specialization %} {{doctor.Specialization}} {% else %}-{% endif %}</h1>
+                    <h1 style="font-size: 18px;">Date of Joining : {{doctor.Date_of_Joining}}</h1>
+                    <h1 style="font-size: 18px;">Hospital : {{doctor.Hospital.Hospital_Name}}</h1>
+                    <h1 style="font-size: 18px;">Hospital Code : {{doctor.Hospital.Hospital_Code}}</h1>
+                    <h1 style="font-size: 18px;">Hospital Location : <i class="{{ doctor.Hospital.Location.flag_css }}"></i> {{doctor.Hospital.Location.name}}</h1>
+                    <div class = "d-inline-block py-2">
+                        <form method = "POST" action = "{% url 'delete_doctor_profile' doctor.id doctor.slug %}">
+                        <a class="btn btn-outline-success" href = "{% url 'update_doctor_details' doctor.id doctor.slug %}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 16L4 17C4 18.6569 5.34315 20 7 20L17 20C18.6569 20 20 18.6569 20 17L20 16M16 8L12 4M12 4L8 8M12 4L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>&nbsp;Update
+                        </a>
+                            {% csrf_token %}
+                            <button type = "submit" class="btn btn-outline-danger">
+                                <i class="icon ion-android-delete"></i>&nbsp;Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

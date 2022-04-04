@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class = "container">
+    <h1 class = "text-center">View Hospitals</h1>
+    <hr/>
+    <div class = "container" style = "margin-bottom:10px;">
+        <form method = "GET">
+            <div class = "row">
+                <div class = "col-md-3">
+                    {{Hospitals.form.Hospital_Name|as_crispy_field}}
+                </div>
+                <div class = "col-md-3">
+                    {{Hospitals.form.Hospital_Code|as_crispy_field}}
+                </div>
+                <div class = "col-md-3">
+                    {{Hospitals.form.Location|as_crispy_field}}
+                </div>
+                <div class = "col-md-3">
+                    <button class="btn btn-primary" data-bss-hover-animate="pulse" type="submit"
+            style="text-align: center;margin-top:20px;background: linear-gradient(43deg, #405de6 0%, #5851d8 17%, #833ab4 37%, #c13584 49%, #e1306c 72%, #e1306c 88%, #ee8bac 97%, #ffdc80 100%), var(--bs-red);"><i
+                class="fa fa-search"></i> Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr/>
+    <div class="row">
+        {% for hospital in Hospitals.qs %}
+        <div class="col-md-4" style = "margin-bottom:10px;">
+            <div class="card" >
+                <div class="card-body"><img>
+                    <h1 class="card-subtitle mb-2" style="font-size: 20px;">Name : {{hospital.Hospital_Name}}</h1>
+                    <h1 style="font-size: 18px;">Code : {{hospital.Hospital_Code}}</h1>
+                    <h1 style="font-size: 18px;">Location : <i class="{{ hospital.Location.flag_css }}"></i> {{hospital.Location.name}}</h1>
+                    <div class = "d-inline-block py-2">
+                        <form method = "POST" action = "{% url 'delete_hospital_profile' hospital.id hospital.slug %}" class = "py-2">
+                            <a class="btn btn-outline-success "style = "margin-bottom:10px;" href = "{% url 'update_hospital_details' hospital.id hospital.slug %}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 16L4 17C4 18.6569 5.34315 20 7 20L17 20C18.6569 20 20 18.6569 20 17L20 16M16 8L12 4M12 4L8 8M12 4L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>&nbsp;Update
+                            </a>
+                                {% csrf_token %}
+                                <button type = "submit" class="btn btn-outline-danger" style = "margin-bottom:10px;">
+                                    <i class="icon ion-android-delete"></i>&nbsp;Delete
+                                </button>
+                                <a class="btn btn-outline-success" style = "margin-bottom:10px;" href = "{% url 'view_doctors_realted_to_hospital' hospital.id hospital.slug %}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 16L4 17C4 18.6569 5.34315 20 7 20L17 20C18.6569 20 20 18.6569 20 17L20 16M16 8L12 4M12 4L8 8M12 4L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>&nbsp;View Doctor Details
+                            </a>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class = "d-inline-block">
+        <a class="btn btn-primary" href = "{% url 'add_hospital' %}" style="background: linear-gradient(43deg, #405de6 0%, #5851d8 17%, #833ab4 37%, #c13584 49%, #e1306c 72%, #e1306c 88%, #ee8bac 97%, #ffdc80 100%), var(--bs-red);"><i class = "fa fa-plus"></i> Add a Hospital</a>
+    </div>
+</div>
+{% endblock %}

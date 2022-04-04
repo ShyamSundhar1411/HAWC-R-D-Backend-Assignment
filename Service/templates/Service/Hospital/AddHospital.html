@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class = "container">
+    <h1 class = "text-center">Add Hospital</h1>
+    <hr/>
+    <form method = "POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class = "d-inline-block py-2">
+            <button class="btn btn-primary" type="submit" style="background: linear-gradient(43deg, #405de6 0%, #5851d8 17%, #833ab4 37%, #c13584 49%, #e1306c 72%, #e1306c 88%, #ee8bac 97%, #ffdc80 100%), var(--bs-red);"><i class = "fa fa-plus" ></i> Add Hospital</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
