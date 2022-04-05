@@ -35,20 +35,21 @@
     <div class="row">
         {% for doctor in Doctors.qs %}
         <div class="col-md-4" style = "margin-bottom:10px;">
-            <div class="card" style="width: 20rem;">
+            <div class="card" style="width: auto;">
                 {% if doctor.Profile_Picture %}
                     <img src="{{doctor.Profile_Picture.url}}" class="card-img-top" alt="{% static 'default.png' %}">
                 {% else %}
                     <img src="{% static 'default.png' %}" class="card-img-top" alt="{% static 'default.png' %}">
                 {% endif %}
                 <div class="card-body">
-                    <h1 class="card-subtitle mb-2" style="font-size: 20px;">Name : Dr. {{doctor.Doctor_Name}}</h1>
-                    <h1 style="font-size: 18px;">Qualification : {{doctor.Qualification}}</h1>
-                    <h1 style="font-size: 18px;">Specialization: {% if doctor.Specialization %} {{doctor.Specialization}} {% else %}-{% endif %}</h1>
-                    <h1 style="font-size: 18px;">Date of Joining : {{doctor.Date_of_Joining}}</h1>
-                    <h1 style="font-size: 18px;">Hospital : {{doctor.Hospital.Hospital_Name}}</h1>
-                    <h1 style="font-size: 18px;">Hospital Code : {{doctor.Hospital.Hospital_Code}}</h1>
-                    <h1 style="font-size: 18px;">Hospital Location : <i class="{{ doctor.Hospital.Location.flag_css }}"></i> {{doctor.Hospital.Location.name}}</h1>
+                    <h1 class="card-subtitle mb-2 doctor-text ">Name : Dr. {{doctor.Doctor_Name}}</h1>
+                    <h1 class="card-subtitle mb-2 doctor-text ">ID : {{doctor.Doctor_Id}}</h1>
+                    <h1 class = "doctor-text">Qualification : {{doctor.Qualification}}</h1>
+                    <h1 class = "doctor-text">Specialization: {% if doctor.Specialization %} {{doctor.Specialization}} {% else %}-{% endif %}</h1>
+                    <h1 class = "doctor-text">Date of Joining : {{doctor.Date_of_Joining}}</h1>
+                    <h1 class = "doctor-text">Hospital : {{doctor.Hospital.Hospital_Name}}</h1>
+                    <h1 class = "doctor-text">Hospital Code : {{doctor.Hospital.Hospital_Code}}</h1>
+                    <h1 class = "doctor-text">Hospital Location : <i class="{{ doctor.Hospital.Location.flag_css }}"></i> {{doctor.Hospital.Location.name}}</h1>
                     <div class = "d-inline-block py-2">
                         <form method = "POST" action = "{% url 'delete_doctor_profile' doctor.id doctor.slug %}">
                         <a class="btn btn-outline-success" href = "{% url 'update_doctor_details' doctor.id doctor.slug %}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">

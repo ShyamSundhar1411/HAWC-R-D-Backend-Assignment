@@ -59,7 +59,7 @@ class UpdateDoctorView(generic.UpdateView):
 def home(request):
     return render(request,"Service/home.html")
 def viewhospitals(request):
-    hospital_list = Hospital.objects.all()
+    hospital_list = Hospital.objects.order_by("Hospital_Code").all()
     hospital_filter = HospitalFilter(request.GET, queryset=hospital_list)
     return render(request, 'Service/Hospital/viewhospitals.html', {'Hospitals': hospital_filter,})
 def viewdoctors(request):

@@ -3,3 +3,26 @@
     height: 30vh;
     object-fit: cover;
 }
+.doctor-text{
+    font-size: 20px;
+}
+@media screen and (max-width: 1090px) {
+    .doctor-text{
+      font-size: 14px !important;
+    }
+  }
+  @media screen and (max-width: 1112px) {
+    .doctor-text{
+      font-size: 14px !important;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .doctor-text{
+      font-size: 9px !important;
+    }
+  }
+  @media screen and (max-width: 770px) {
+    .doctor-text{
+      font-size: 15px !important;
+    }
+}

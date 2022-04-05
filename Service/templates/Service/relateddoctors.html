@@ -2,12 +2,12 @@
 {% load static %}
 {% block content %}
 <div class = "container">
-    <h1 class = "text-center">Doctors of {{Hospital.Hospital_Name}}</h1>
+    <h1 class = "text-center">Doctor{{Doctors.count|pluralize}} of {{Hospital.Hospital_Name}}</h1>
     <hr/>
     <div class="row">
         {% for doctor in Doctors %}
-        <div class="col-md-4">
-            <div class="card" style="width: 20rem;">
+        <div class="col-md-4" style = "margin-bottom:10px;">
+            <div class="card" style="width: auto;">
                 {% if doctor.Profile_Picture %}
                     <img src="{{doctor.Profile_Picture.url}}" class="card-img-top" alt="{% static 'default.png' %}">
                 {% else %}
@@ -37,6 +37,9 @@
             </div>
         </div>
         {% endfor %}
+    </div>
+    <div class = "d-inline-block">
+        <a class="btn btn-primary" href = "{% url 'add_doctor' %}" style="background: linear-gradient(43deg, #405de6 0%, #5851d8 17%, #833ab4 37%, #c13584 49%, #e1306c 72%, #e1306c 88%, #ee8bac 97%, #ffdc80 100%), var(--bs-red);"><i class = "fa fa-plus"></i> Add a Doctor</a>
     </div>
 </div>
 {% endblock %}
