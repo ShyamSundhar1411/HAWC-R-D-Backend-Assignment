@@ -1,6 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class = "container">
-    <h1>Hello Page</h1>
+    <div class = "row" style = "margin-top:100px;">
+        <div class = "col-md-6">
+            <article>
+                <section class="article-clean">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                                <div class="intro">
+                                    <h1 class="text-center">Hospital Management System</h1>
+                                    <p class="text-center"><span class="by">by </span>Shyam Sundhar<span class="date text-muted"> HAWC Backend Assignment</span></p>
+                                </div>
+                                <div class="text">
+                                    <p>This Project is done for illustration of Concept of Relation Database as mentioned in the Assignment. Since, it was asked for a basic project, I haven't included any authentication services. So, this is project is basically a content manager for hospital with CRUD Functionalities. Any User Can View the hospitals,doctors and can do the RUD functionalities for the same .</p>
+                                    <div class = "d-inline-block py-2">
+                                        <a class = "btn btn-primary" data-bss-hover-animate="pulse" style="background: linear-gradient(43deg, #405de6 0%, #5851d8 17%, #833ab4 37%, #c13584 49%, #e1306c 72%, #e1306c 88%, #ee8bac 97%, #ffdc80 100%), var(--bs-red);margin-right:10px;" href = "{% url 'view_all_hospitals' %}">Hospital Manager</a>
+                                        <a class = "btn btn-primary" data-bss-hover-animate="pulse" style="background: linear-gradient(43deg, #405de6 0%, #5851d8 17%, #833ab4 37%, #c13584 49%, #e1306c 72%, #e1306c 88%, #ee8bac 97%, #ffdc80 100%), var(--bs-red);" href = "{% url 'view_all_doctors' %}">Doctor Manager</a> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+        <div class = "col-md-6">
+            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_wdXBRc.json"  background="transparent"  speed="1"  style="width: auto; height: auto;"  loop  autoplay></lottie-player>
+        </div>
+    </div>
 </div>
 {% endblock %}
