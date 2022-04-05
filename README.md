@@ -1,7 +1,7 @@
 # How to Run The Project
 1. Install poetry through pip
       *  ``` pip install poetry ```
- 2. Install Dependencies in the project folder by running the following command(On the project folder)
+ 2. Install Dependencies in the project folder by running the following command(Inside the project folder)
       * ``` poetry install ```
  3. After Installing Dependencies inside the project folder Run migrations
      * ``` py manage.py makemigrations ```
